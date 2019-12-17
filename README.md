@@ -21,7 +21,7 @@ or build.gradle:
 ```
 
 eg:
-```
+```java
 try {
 			link = URLDecoder.decode(link, "UTF-8");
 		} catch (UnsupportedEncodingException e1) {
