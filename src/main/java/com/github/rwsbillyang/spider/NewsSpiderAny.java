@@ -49,20 +49,20 @@ public class NewsSpiderAny  extends NewsSpiderStreamHandle implements NewsSpider
 		try {
 			Document doc=Jsoup.parse(is, "UTF-8", url);
 			String text = doc.select("head > title").text();
-			map.put("title", text); 
+			if(!StringUtil.isBlank(text)) map.put("title", text); 
 			
 			text = doc.select("head > meta[name=description]").attr("content");
-			map.put("brief", text);
+			if(!StringUtil.isBlank(text)) map.put("brief", text);
 			
 			text = doc.select("head > meta[property=og:image]").attr("content");
-			map.put("imgUrl", text);
+			if(!StringUtil.isBlank(text)) map.put("imgUrl", text);
 			if(StringUtil.isBlank(text)|| !text.startsWith("http"))
 			{
 				//图片地址为空，从正文内容中寻找第一张
 				List<String> list = HtmlImgSrcUtil.getImageSrc2( doc.select("body").html());
 				if(list != null && list.size()>0)
 				{
-					map.put("imgUrl", list.get(0));
+					if(!StringUtil.isBlank(text)) map.put("imgUrl", list.get(0));
 				}
 			}
 			//map.put("body", doc.html());
