@@ -52,7 +52,7 @@ public class NewsSpiderWechat extends NewsSpiderStreamHandle implements NewsSpid
 	public String[][] getInfoArray(){
 		String[][] infoArray = {
 				{"user",PATTERN_CONTAIN,"profile_nickname",">","<"},
-				{"content",PATTERN_MULTIPlE_LINES_CONTAIN,"id=\"js_content\">",null,"</div>",PATTERN_MULTIPlE_LINES_EQUAL, "<section class=\"cps_inner cps_inner_list js_list_container js_product_container\">","</section>"},
+				{"content",PATTERN_MULTIPlE_LINES_CONTAIN,"id=\"js_content\"",null,"</div>",PATTERN_MULTIPlE_LINES_EQUAL, "<section class=\"cps_inner cps_inner_list js_list_container js_product_container\">","</section>"},
 				//{"date",PATTERN_PREFIX,"var publish_time","\"","\""},
 				{"title",PATTERN_PREFIX,"var msg_title","\"","\""},
 				{"brief",PATTERN_PREFIX,"var msg_desc","\"","\""},
