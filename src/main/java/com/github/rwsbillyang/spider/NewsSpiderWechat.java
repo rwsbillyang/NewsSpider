@@ -51,20 +51,24 @@ public class NewsSpiderWechat extends NewsSpiderStreamHandle implements NewsSpid
 	@Override
 	public String[][] getInfoArray(){
 		String[][] infoArray = {
-				{"user",PATTERN_CONTAIN,"profile_nickname",">","<"},
-				{"content",PATTERN_MULTIPlE_LINES_CONTAIN,"id=\"js_content\"",null,"</div>",PATTERN_MULTIPlE_LINES_EQUAL, "<section class=\"cps_inner cps_inner_list js_list_container js_product_container\">","</section>"},
-				{"ogurl",PATTERN_PREFIX,"<meta property=\"og:url\"","content=\"","\""},
-				//{"title",PATTERN_PREFIX,"var msg_title","\"","\""},
-				{"title",PATTERN_PREFIX,"<meta property=\"og:title\"","content=\"","\""},
-				{"brief",PATTERN_PREFIX,"var msg_desc","\"","\""},
-				{"imgUrl",PATTERN_PREFIX,"var msg_cdn_url","\"","\""},
-				{"link",PATTERN_PREFIX,"var msg_link","\"","\""},
+				{SpiderConstants.USER, PATTERN_CONTAIN,"profile_nickname",">","<"},
+				{SpiderConstants.CONTENT, PATTERN_MULTIPlE_LINES_CONTAIN,"id=\"js_content\"",null,"</div>",PATTERN_MULTIPlE_LINES_EQUAL, "<section class=\"cps_inner cps_inner_list js_list_container js_product_container\">","</section>"},
+				{SpiderConstants.OGURL, PATTERN_PREFIX,"<meta property=\"og:url\"","content=\"","\""},
+				{SpiderConstants.TAG,PATTERN_PREFIX,"var _ori_article_type","\"","\""}, //var _ori_article_type = "财经_股票";
+				{SpiderConstants.TITLE, PATTERN_PREFIX,"<meta property=\"og:title\"","content=\"","\""},
+				{SpiderConstants.BRIEF, PATTERN_PREFIX,"<meta property=\"og:description\"","content=\"","\""},
+				{SpiderConstants.IMGURL, PATTERN_PREFIX,"<meta property=\"og:image\"","content=\"","\""},
+				{SpiderConstants.LINK, PATTERN_PREFIX,"var msg_link","\"","\""},
+				{SpiderConstants.USER2, PATTERN_PREFIX,"d.nick_name","\"","\""},//d.nick_name = "华夏时报"; https://mp.weixin.qq.com/s/GShHXGJDzAtw0VNQTVzjyQ
 				};
 		return infoArray;
 	}
 	
 	public void doParse(String url, Map<String, String> map) {
 		getPageAndParse(url,map);
+		if(map.get(SpiderConstants.LINK)==null) {
+			map.put(SpiderConstants.LINK, url);
+		}
 	}
 
 	public static void main(String[] args) {

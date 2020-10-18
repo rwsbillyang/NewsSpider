@@ -30,9 +30,9 @@ public class NewsSpiderAny  extends NewsSpiderStreamHandle implements NewsSpider
 	@Override
 	public String[][] getInfoArray() {
 		String[][] infoArray = {
-				{"brief",PATTERN_PREFIX,"<meta name=\"description\"","content=\"","\">"},
-				{"imgUrl",PATTERN_PREFIX,"<meta property=\"og:image\"","content=\"","\""},
-				{"title",PATTERN_PREFIX,"<title",">","<"}
+				{SpiderConstants.BRIEF, PATTERN_PREFIX,"<meta name=\"description\"","content=\"","\">"},
+				{SpiderConstants.IMGURL, PATTERN_PREFIX,"<meta property=\"og:image\"","content=\"","\""},
+				{SpiderConstants.TITLE, PATTERN_PREFIX,"<title",">","<"}
 				};
 		return infoArray;
 	}
@@ -42,8 +42,8 @@ public class NewsSpiderAny  extends NewsSpiderStreamHandle implements NewsSpider
 		InputStream is= getPage(url);
 		if(is==null)
 		{
-			map.put(Constants.RET, Constants.KO);
-   		 	map.put(Constants.MSG, "获取内容失败");
+			map.put(SpiderConstants.RET, SpiderConstants.KO);
+   		 	map.put(SpiderConstants.MSG, "获取内容失败");
    		 	return;
 		}
 		try {
@@ -66,12 +66,12 @@ public class NewsSpiderAny  extends NewsSpiderStreamHandle implements NewsSpider
 				}
 			}
 			//map.put("body", doc.html());
-			map.put(Constants.RET, Constants.OK);
-			map.put(Constants.MSG, "experimental to parse brief and image");
+			map.put(SpiderConstants.RET, SpiderConstants.OK);
+			map.put(SpiderConstants.MSG, "experimental to parse brief and image");
 		} catch (IOException e) {
 			e.printStackTrace();
-			map.put(Constants.RET, Constants.KO);
-   		 	map.put(Constants.MSG, "获取内容失败:IOException");
+			map.put(SpiderConstants.RET, SpiderConstants.KO);
+   		 	map.put(SpiderConstants.MSG, "获取内容失败:IOException");
    		 	return;
 		}
 	}

@@ -181,8 +181,8 @@ public abstract class NewsSpiderStreamHandle {
 	{
 		if(is==null)
 		{
-			map.put(Constants.RET, Constants.KO);
-   		 	map.put(Constants.MSG, "获取内容失败");
+			map.put(SpiderConstants.RET, SpiderConstants.KO);
+   		 	map.put(SpiderConstants.MSG, "获取内容失败");
    		 	return;
 		}
 		 try{		 
@@ -294,13 +294,13 @@ public abstract class NewsSpiderStreamHandle {
 	            
 				if(count==infoArray.length)
 				{
-					map.put(Constants.RET, Constants.OK);
-					map.put(Constants.MSG, "恭喜，解析成功，请编辑保存！");
+					map.put(SpiderConstants.RET, SpiderConstants.OK);
+					map.put(SpiderConstants.MSG, "恭喜，解析成功，请编辑保存！");
 				}else
 				{
 					log.warn("got results number:"+count+",less than "+infoArray.length+",url="+url);
-					map.put(Constants.RET, Constants.OK);
-					map.put(Constants.MSG, "得到部分解析结果！请耐心等候系统升级！");
+					map.put(SpiderConstants.RET, SpiderConstants.OK);
+					map.put(SpiderConstants.MSG, "得到部分解析结果！请耐心等候系统升级！");
 				}
 				
 				in.close();
@@ -311,8 +311,8 @@ public abstract class NewsSpiderStreamHandle {
 		    }catch(Exception e){
 		        e.printStackTrace();
 		        log.error("caused Exception, the url="+url);
-		        map.put(Constants.RET, Constants.KO);
-				map.put(Constants.MSG, "获取内容时网络超时，请重试");
+		        map.put(SpiderConstants.RET, SpiderConstants.KO);
+				map.put(SpiderConstants.MSG, "获取内容时网络超时，请重试");
 				
 				return;
 		    }

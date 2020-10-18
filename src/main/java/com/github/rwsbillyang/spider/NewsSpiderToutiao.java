@@ -23,9 +23,9 @@ public class NewsSpiderToutiao  extends NewsSpiderStreamHandle implements NewsSp
 	@Override
 	public String[][] getInfoArray() {
 		String[][] infoArray = {
-				{"brief",PATTERN_CONTAIN,"<meta name=description content","<meta name=description content=",">"},
-				{"title",PATTERN_PREFIX,"title:","'","'"},
-				{"content",PATTERN_PREFIX,"content:","'","'"},
+				{SpiderConstants.BRIEF, PATTERN_CONTAIN,"<meta name=description content","<meta name=description content=",">"},
+				{SpiderConstants.TITLE, PATTERN_PREFIX,"title:","'","'"},
+				{SpiderConstants.CONTENT, PATTERN_PREFIX,"content:","'","'"},
 				
 				//{"date",PATTERN_PREFIX,"<em id=\"post-date\"",">","<"},
 				//{"user",PATTERN_CONTAIN,"id=\"post-user\"",">","<"},
@@ -49,8 +49,8 @@ public class NewsSpiderToutiao  extends NewsSpiderStreamHandle implements NewsSp
 //			else
 //				log.warn("no imgUrl in toutiao:"+url);
 //		}
-		map.put("link", url);
-		map.put("user", "今日头条");
+		map.put(SpiderConstants.LINK, url);
+		map.put(SpiderConstants.USER, "今日头条");
 	}
 
 

@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 
 public class NewsSpider {
-	private static final Logger log = LoggerFactory.getLogger(NewsSpider.class);
+	private static final Logger log = LoggerFactory.getLogger("NewsSpider");
 	
 	//"Mozilla/5.0 (Windows NT 5.1; rv:6.0.2) Gecko/20100101 Firefox/6.0.2"
 	public final static String UserAgent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36";
@@ -54,15 +54,15 @@ public class NewsSpider {
 		NewsSpiderInterface spider = getSpiderByUrl(url);
 		if(spider==null)
 		{
-			 map.put(Constants.RET, Constants.KO);
-			 map.put(Constants.MSG, "暂只支持微信、今日头条和163！请确认链接域名是否正确");
+			 map.put(SpiderConstants.RET, SpiderConstants.KO);
+			 map.put(SpiderConstants.MSG, "暂只支持微信、今日头条和163！请确认链接域名是否正确");
 			 return;
 		}
 		boolean isInvalid = Pattern.matches(spider.regPattern(), url);
 		if (!isInvalid) {
 			log.warn("url not match regPattern="+spider.regPattern() + ",url="+url);
-			map.put(Constants.RET, Constants.KO);
-			map.put(Constants.MSG, spider.errMsg());
+			map.put(SpiderConstants.RET, SpiderConstants.KO);
+			map.put(SpiderConstants.MSG, spider.errMsg());
 			return;
 		}
 		try {
